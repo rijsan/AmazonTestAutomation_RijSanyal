@@ -11,11 +11,11 @@ import java.text.SimpleDateFormat;
 import java.nio.file.Files;
 import java.util.Date;
 
-public class screenshotUtil {
+public class ScreenshotUtil {
     private WebDriver driver;
     private static final String Screenshot_DIR = "src/test/resources/reports/screenshots";
 
-    public screenshotUtil(WebDriver driver)
+    public ScreenshotUtil(WebDriver driver)
     {
         this.driver = driver;
     }

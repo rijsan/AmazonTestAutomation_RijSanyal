@@ -5,7 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 
-public class driverFactory
+public class DriverFactory
 {
     private static WebDriver driver;
 
@@ -34,5 +34,6 @@ public class driverFactory
         if(driver != null)
             driver.quit();
         driver=null;
+        ExtentManager.getInstance().flush();
     }
 }
