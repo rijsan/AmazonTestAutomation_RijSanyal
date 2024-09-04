@@ -21,7 +21,6 @@ public class BaseTest
     ExcelReader excelReader;
 
     @BeforeTest
-    //@Parameters("browser")
     public void setUp() throws InterruptedException {
 
         final String propertiesFilePath = "src/main/java/com/Amazon/AmazonTestAutomation/config/config.properties";
@@ -38,11 +37,8 @@ public class BaseTest
         catch (IOException e) {
             e.printStackTrace();
         }
-
-
         extent = ExtentManager.getInstance();
         //test = extent.createTest(method.getName());
-
         driver = DriverFactory.getDriver(browser);
         driver.manage().window().maximize();
         driver.navigate().to(URL);
@@ -54,7 +50,7 @@ public class BaseTest
         Reading Credentials from Excel File
         Email ID and Password is saved in excel
         */
-        excelReader.selectSheet("Credentials");
+        excelReader.selectSheet("Account Details");
         String email = excelReader.getData("EMAIL ID", "SAMPLE DATA 1");
         String password = excelReader.getData("PASSWORD", "SAMPLE DATA 1");
 
