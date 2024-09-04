@@ -1,13 +1,16 @@
 package com.Amazon.AmazonTestAutomation.tests;
 
+import com.Amazon.AmazonTestAutomation.utils.DriverFactory;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.Amazon.AmazonTestAutomation.utils.ExtentManager;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.*;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.Properties;
 
 public class BaseTest
 {
@@ -15,12 +18,38 @@ public class BaseTest
     protected ExtentReports extent;
     protected ExtentTest test;
 
-    @BeforeMethod
-    public void setUp(Method method)
-    {
+    @BeforeTest
+    //@Parameters("browser")
+    public void setUp() throws InterruptedException {
+
+        final String propertiesFilePath = "src/main/java/com/Amazon/AmazonTestAutomation/config/config.properties";
+        Properties properties = new Properties();
+        String browser = null;
+        String URL = null;
+
+        try
+        {
+            properties.load(new FileInputStream(propertiesFilePath));
+            browser = properties.getProperty("browser");
+            URL = properties.getProperty("AmazonURL");
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         extent = ExtentManager.getInstance();
-        test = extent.createTest(method.getName());
+        //test = extent.createTest(method.getName());
 
+        driver = DriverFactory.getDriver(browser);
+        driver.manage().window().maximize();
+        driver.navigate().to(URL);
+    }
 
+    @AfterTest
+    public void tearDown()
+    {
+        // Quit and clean up web driver instance
+        DriverFactory.quitDriver();
     }
 }
