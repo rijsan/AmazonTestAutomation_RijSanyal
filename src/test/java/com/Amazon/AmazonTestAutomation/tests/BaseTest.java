@@ -1,6 +1,8 @@
 package com.Amazon.AmazonTestAutomation.tests;
 
+import com.Amazon.AmazonTestAutomation.pages.HomePage;
 import com.Amazon.AmazonTestAutomation.utils.DriverFactory;
+import com.Amazon.AmazonTestAutomation.utils.ExcelReader;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.Amazon.AmazonTestAutomation.utils.ExtentManager;
@@ -9,7 +11,6 @@ import org.testng.annotations.*;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.util.Properties;
 
 public class BaseTest
@@ -17,6 +18,7 @@ public class BaseTest
     protected WebDriver driver;
     protected ExtentReports extent;
     protected ExtentTest test;
+    ExcelReader excelReader;
 
     @BeforeTest
     //@Parameters("browser")
@@ -26,12 +28,12 @@ public class BaseTest
         Properties properties = new Properties();
         String browser = null;
         String URL = null;
-
         try
         {
             properties.load(new FileInputStream(propertiesFilePath));
             browser = properties.getProperty("browser");
             URL = properties.getProperty("AmazonURL");
+            excelReader = new ExcelReader(properties.getProperty("ExcelFilePath"));
         }
         catch (IOException e) {
             e.printStackTrace();
