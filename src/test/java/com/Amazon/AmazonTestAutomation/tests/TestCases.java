@@ -3,8 +3,11 @@ package com.Amazon.AmazonTestAutomation.tests;
 import com.Amazon.AmazonTestAutomation.pages.AddressPage;
 import org.testng.annotations.Test;
 import com.Amazon.AmazonTestAutomation.pages.HomePage;
+import com.Amazon.AmazonTestAutomation.pages.BestSellerPage;
+import com.Amazon.AmazonTestAutomation.pages.CartPage;
+import org.testng.Assert;
 
-public class LoginTest extends BaseTest
+public class TestCases extends BaseTest
 {
 
     @Test
@@ -46,4 +49,27 @@ public class LoginTest extends BaseTest
 
         assert true:"Passed";
     }
+
+    @Test
+    public void Validate_BestSellersPage() throws InterruptedException
+    {
+        excelReader.selectSheet("BestSeller UseCase");
+        String userDefined_Category = excelReader.getData("BEST SELLER CATEGORY", "SAMPLE DATA 1");
+        String userDefined_Rank = excelReader.getData("RANK", "SAMPLE DATA 1");
+        System.out.println(userDefined_Rank);
+
+        LoginToAmazon();
+        HomePage homePage = new HomePage(driver);
+        homePage.clickBestSellers();
+        BestSellerPage bestSeller = new BestSellerPage(driver);
+        bestSeller.Click_SeeMore_For_BestSeller_Category(userDefined_Category);
+        bestSeller.Click_Specific_RankedProduct(userDefined_Rank);
+        String productTitle = bestSeller.GetProductTitleText();
+        bestSeller.Click_AddToCartButton();
+        bestSeller.OpenCartLink();
+        CartPage cartPage = new CartPage(driver);
+        String cartItemTitle = cartPage.Get_CartItem_TitleText();
+        Assert.assertTrue(cartPage.matchProductDetails(cartItemTitle,productTitle));
+    }
+
 }
