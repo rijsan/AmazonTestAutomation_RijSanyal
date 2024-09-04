@@ -48,6 +48,25 @@ public class BaseTest
         driver.navigate().to(URL);
     }
 
+    public void LoginToAmazon()
+    {
+        /*
+        Reading Credentials from Excel File
+        Email ID and Password is saved in excel
+        */
+        excelReader.selectSheet("Credentials");
+        String email = excelReader.getData("EMAIL ID", "SAMPLE DATA 1");
+        String password = excelReader.getData("PASSWORD", "SAMPLE DATA 1");
+
+        //Steps to login to Amazon.in account
+        HomePage homePage = new HomePage(driver);
+        homePage.Click_AccountNav();
+        homePage.Enter_EmailID(email); // Entering Email ID
+        homePage.Click_Continue();
+        homePage.Enter_Password(password); // Entering Password
+        homePage.Click_Submit();
+    }
+
     @AfterTest
     public void tearDown()
     {
