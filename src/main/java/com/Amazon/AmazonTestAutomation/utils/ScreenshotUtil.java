@@ -12,11 +12,12 @@ import java.nio.file.Files;
 import java.util.Date;
 
 public class ScreenshotUtil {
-    private WebDriver driver;
-    private static final String Screenshot_DIR = "src/test/resources/reports/screenshots";
+    private static WebDriver driver;
+    private static String Screenshot_DIR = null;
 
-    public ScreenshotUtil(WebDriver driver)
+    public ScreenshotUtil(WebDriver driver, String path)
     {
+        Screenshot_DIR = path;
         this.driver = driver;
     }
 
@@ -25,12 +26,12 @@ public class ScreenshotUtil {
     *
     * */
 
-    public String takeScreenshot(String screenshotname)
+    public static String takeScreenshot(String screenshotname)
     {
         String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String filepath = Screenshot_DIR + screenshotname + "_" + timestamp + ".png";
         //Take the screenshot
-        File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        File srcFile = ((TakesScreenshot) ScreenshotUtil.driver).getScreenshotAs(OutputType.FILE);
         File destFile = new File(filepath);
 
         try

@@ -1,12 +1,15 @@
 package com.Amazon.AmazonTestAutomation.tests;
 
+import com.Amazon.AmazonTestAutomation.listeners.TestListener;
 import com.Amazon.AmazonTestAutomation.pages.AddressPage;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import com.Amazon.AmazonTestAutomation.pages.HomePage;
 import com.Amazon.AmazonTestAutomation.pages.BestSellerPage;
 import com.Amazon.AmazonTestAutomation.pages.CartPage;
 import org.testng.Assert;
 
+@Listeners(TestListener.class)
 public class TestCases extends BaseTest
 {
 

@@ -3,6 +3,7 @@ package com.Amazon.AmazonTestAutomation.tests;
 import com.Amazon.AmazonTestAutomation.pages.HomePage;
 import com.Amazon.AmazonTestAutomation.utils.DriverFactory;
 import com.Amazon.AmazonTestAutomation.utils.ExcelReader;
+import com.Amazon.AmazonTestAutomation.utils.ScreenshotUtil;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.Amazon.AmazonTestAutomation.utils.ExtentManager;
@@ -42,6 +43,7 @@ public class BaseTest
         driver = DriverFactory.getDriver(browser);
         driver.manage().window().maximize();
         driver.navigate().to(URL);
+        ScreenshotUtil screenshotUtil = new ScreenshotUtil(driver,properties.getProperty("ScreenshotFolderPath"));
     }
 
     public void LoginToAmazon()
@@ -51,16 +53,22 @@ public class BaseTest
         Email ID and Password is saved in excel
         */
         excelReader.selectSheet("Account Details");
-        String email = excelReader.getData("EMAIL ID", "SAMPLE DATA 1");
-        String password = excelReader.getData("PASSWORD", "SAMPLE DATA 1");
+        String email = excelReader.getData("EMAIL ID", "CREDENTIALS");
+        String password = excelReader.getData("PASSWORD", "CREDENTIALS");
 
         //Steps to login to Amazon.in account
         HomePage homePage = new HomePage(driver);
+
         homePage.Click_AccountNav();
         homePage.Enter_EmailID(email); // Entering Email ID
         homePage.Click_Continue();
         homePage.Enter_Password(password); // Entering Password
         homePage.Click_Submit();
+    }
+
+    public WebDriver getDriver()
+    {
+        return this.driver;
     }
 
     @AfterTest
