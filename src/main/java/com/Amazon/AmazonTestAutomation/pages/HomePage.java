@@ -1,27 +1,19 @@
 package com.Amazon.AmazonTestAutomation.pages;
 
-import com.Amazon.AmazonTestAutomation.utils.LoggerUtil;
 import dev.failsafe.internal.util.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.time.Duration;
 
 public class HomePage extends BasePage
 {
-    private WebDriver driver;
-    private WebDriverWait wait;
-
     public HomePage(WebDriver driver)
     {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        PageFactory.initElements(driver,this);
+        super(driver);
     }
     @FindBy(xpath="//a[@id='nav-link-accountList']")
     private WebElement accountNav;
@@ -43,65 +35,76 @@ public class HomePage extends BasePage
     private WebElement SignInPageDisplayed;
     @FindBy(xpath="//a[contains(text(),'Best Sellers')]")
     private WebElement BestSellerLink;
-
     @FindBy(xpath="//h2[contains(text(),'Your Addresses')]")
     private WebElement YourAddressNav;
 
-
+    //Hover over Account Navigation Link
     public void Hover_Over_AccountNav() {
         Actions actions = new Actions(driver);
+        wait.until(ExpectedConditions.elementToBeClickable(accountNav));
         actions.moveToElement(accountNav).perform();
-        LoggerUtil.info("Hovered over the Account Options Link");
+        logger.info("Hovered over the Account Options Link");
     }
     //Click on Account Navigation link to explore all account options
     public void Click_AccountNav() {
+        wait.until(ExpectedConditions.elementToBeClickable(accountNav));
         accountNav.click();
-        LoggerUtil.info("Clicked the Account Options Link");
+        logger.info("Clicked the Account Options Link");
     }
+
     //Entering Email ID in Textbox
     public void Enter_EmailID(String email) {
+        wait.until(ExpectedConditions.elementToBeClickable(credentialTextBox));
         credentialTextBox.sendKeys(email);
-        LoggerUtil.info("Entered Email ID in Credential Text Box");
+        logger.info("Entered Email ID in Credential Text Box");
     }
     //Method to Click Continue Button
     public void Click_Continue() {
+        wait.until(ExpectedConditions.elementToBeClickable(continueButton));
         continueButton.click();
-        LoggerUtil.info("Continue Button clicked");
+        logger.info("Continue Button clicked");
     }
     //Entering Password in Textbox
     public void Enter_Password(String password) {
-        wait.withTimeout(Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(PasswordField));
         PasswordField.sendKeys(password);
-        LoggerUtil.info("Entered Password in Password Text Box");
+        logger.info("Entered Password in Password Text Box");
     }
     //Method to Click Submit Button
     public void Click_Submit() {
-        wait.withTimeout(Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(SubmitButton));
         SubmitButton.click();
-        LoggerUtil.info("Submit button clicked");
+        logger.info("Submit button clicked");
+        logger.info("SUCCESSFULLY LOGGED IN TO AMAZON.IN ");
     }
 
+    //Method to Select Your Addresses option from Account Settings page
     public void Click_YourAddresses() {
-        wait.withTimeout(Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(YourAddressNav));
         YourAddressNav.click();
     }
+
     //Logout Method to Click Logout Link
     public void Click_Logout() {
         Hover_Over_AccountNav();
+        wait.withTimeout(Duration.ofSeconds(2));
         Logout.click();
-        wait.withTimeout(Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.elementToBeClickable(SignInPageDisplayed));
         Assert.isTrue(SignInPageDisplayed.isDisplayed(),"Logout not successful");
+        logger.info("SUCCESSFULLY LOGGED OUT FROM AMAZON.IN ");
     }
 
     //Logout Method to Click Logout Link
     public void NavigateTo_YourAddresses() {
         Click_AccountNav();
         Click_YourAddresses();
-        wait.withTimeout(Duration.ofSeconds(10));
+        logger.info("Your Addresses Option is Selected");
     }
-
+    //Method to Click Best Sellers Option from Homepage
     public void clickBestSellers()
     {
+        wait.until(ExpectedConditions.elementToBeClickable(BestSellerLink));
         BestSellerLink.click();
+        logger.info("Best Seller page is opened ");
     }
 }

@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -35,6 +36,7 @@ public class BasePage
 
 
     public void Click_AddToCartButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(AddToCartButton));
         AddToCartButton.click();
         logger.info("Add To Cart Button is Clicked");
     }
@@ -44,6 +46,15 @@ public class BasePage
     }
     public String GetProductTitleText() {
         return ProductTitle.getText();
+    }
+    public boolean matchProductDetails(String cartTitle, String productTitle)
+    {
+        cartTitle = (cartTitle.split("\n")[0]);
+        cartTitle = cartTitle.substring(0,cartTitle.length()-2);
+        if(productTitle.contains(cartTitle))
+            return true;
+        else
+            return false;
     }
 
 

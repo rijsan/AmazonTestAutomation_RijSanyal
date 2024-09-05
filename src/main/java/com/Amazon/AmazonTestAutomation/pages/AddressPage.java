@@ -2,59 +2,36 @@ package com.Amazon.AmazonTestAutomation.pages;
 
 import dev.failsafe.internal.util.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import com.Amazon.AmazonTestAutomation.utils.LoggerUtil;
 
 public class AddressPage extends BasePage
 {
-    private WebDriver driver;
-    private WebDriverWait wait;
-    private static LoggerUtil logger;
-
-
-    public AddressPage(WebDriver driver)
-    {
-        this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        PageFactory.initElements(driver,this);
-        logger = new LoggerUtil();
+    public AddressPage(WebDriver driver) {
+        super(driver);
     }
     @FindBy(xpath = "//div[@id='ya-myab-plus-address-icon']")
     private WebElement AddNewAddress;
-
     @FindBy(xpath = "//h2[contains(text(),'Add a new address')]")
     private WebElement AddNewAddressPageHeading;
-
     @FindBy(xpath = "//input[@id='address-ui-widgets-enterAddressFullName']")
     private WebElement FullNameInput;
-
     @FindBy(xpath = "//input[@id='address-ui-widgets-enterAddressPhoneNumber']")
     private WebElement MobileNumberInput;
-
     @FindBy(xpath = "//input[@id='address-ui-widgets-enterAddressPostalCode']")
     private WebElement PincodeInput;
-
     @FindBy(xpath = "//input[@id='address-ui-widgets-enterAddressLine1']")
     private WebElement HouseDetailsInput;
-
     @FindBy(xpath = "//input[@id='address-ui-widgets-enterAddressLine2']")
     private WebElement AreaDetailsInput;
-
     @FindBy(xpath = "//input[@id='address-ui-widgets-landmark']")
     private WebElement LandmarkDetailsInput;
-
     @FindBy(xpath = "//input[@id='address-ui-widgets-enterAddressCity']")
     private WebElement TownInput;
-
     @FindBy(xpath = "//span[@id='address-ui-widgets-enterAddressStateOrRegion']")
     private WebElement StateDropdown;
     String State_xpath = "//a[contains(text(),'%s')]";
@@ -62,7 +39,10 @@ public class AddressPage extends BasePage
     @FindBy(xpath = "//span[contains(text(),'Add address')]//preceding::input[1]")
     private WebElement AddAddressButton;
 
+
+
     public void Click_AddNewAddressButton() {
+        wait.until(ExpectedConditions.elementToBeClickable(AddNewAddress));
         AddNewAddress.click();
         logger.info("Add New Address Option Clicked");
     }
@@ -118,17 +98,17 @@ public class AddressPage extends BasePage
     public void Enter_State(String stateValue)
     {
         StateDropdown.click();
+        wait.withTimeout(Duration.ofSeconds(3));
         driver.findElement(By.xpath(String.format(State_xpath,stateValue.toUpperCase()))).click();
         logger.info("State is selected from Dropdown");
     }
     //Method to click on Add address button
     public void ClickSubmit_AddAddressButton()
     {
-        wait.withTimeout(Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.elementToBeClickable(AddAddressButton));
         AddAddressButton.click();
         logger.info("Add Address Submit button selected");
-        wait.withTimeout(Duration.ofSeconds(20));
+        wait.withTimeout(Duration.ofSeconds(3));
 
     }
-
 }
