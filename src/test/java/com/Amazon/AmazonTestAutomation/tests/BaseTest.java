@@ -21,17 +21,15 @@ public class BaseTest
     protected ExtentTest test;
     ExcelReader excelReader;
 
-    @BeforeTest
+    @BeforeMethod
+//    @Parameters("browser")
     public void setUp() throws InterruptedException {
-
         final String propertiesFilePath = "src/main/java/com/Amazon/AmazonTestAutomation/config/config.properties";
         Properties properties = new Properties();
-        String browser = null;
         String URL = null;
         try
         {
             properties.load(new FileInputStream(propertiesFilePath));
-            browser = properties.getProperty("browser");
             URL = properties.getProperty("AmazonURL");
             excelReader = new ExcelReader(properties.getProperty("ExcelFilePath"));
         }
@@ -39,8 +37,7 @@ public class BaseTest
             e.printStackTrace();
         }
         extent = ExtentManager.getInstance();
-        //test = extent.createTest(method.getName());
-        driver = DriverFactory.getDriver(browser);
+        driver = DriverFactory.getDriver("chrome");
         driver.manage().window().maximize();
         driver.navigate().to(URL);
         ScreenshotUtil screenshotUtil = new ScreenshotUtil(driver,properties.getProperty("ScreenshotFolderPath"));
@@ -59,11 +56,11 @@ public class BaseTest
         //Steps to login to Amazon.in account
         HomePage homePage = new HomePage(driver);
 
-        homePage.Click_AccountNav();
-        homePage.Enter_EmailID(email); // Entering Email ID
-        homePage.Click_Continue();
-        homePage.Enter_Password(password); // Entering Password
-        homePage.Click_Submit();
+        homePage.click_AccountNav();
+        homePage.enter_EmailID(email);                                      // Entering Email ID
+        homePage.click_Continue();
+        homePage.enter_Password(password);                                  // Entering Password
+        homePage.click_Submit();                                            // Entering Submit button
     }
 
     public WebDriver getDriver()
@@ -71,10 +68,13 @@ public class BaseTest
         return this.driver;
     }
 
-    @AfterTest
+    @AfterMethod
     public void tearDown()
     {
         // Quit and clean up web driver instance
         DriverFactory.quitDriver();
+        extent.flush();
     }
+
+
 }

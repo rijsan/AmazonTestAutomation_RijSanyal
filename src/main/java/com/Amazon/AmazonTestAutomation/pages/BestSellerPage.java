@@ -1,9 +1,10 @@
 package com.Amazon.AmazonTestAutomation.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-
-import java.time.Duration;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class BestSellerPage extends BasePage
 {
@@ -12,19 +13,31 @@ public class BestSellerPage extends BasePage
         super(driver);
     }
 
-    String BestSeller_Category_Xpath = "//div//h2[contains(text(),'%s')]//following::a[contains(text(),'See More')][1]";
-    String RankedProduct_Xpath = "//span[@class='zg-bdg-text' and contains(text(),'#%s')]//following::div[@class='zg-grid-general-faceout'][1]";
+    String bestSeller_Category_Xpath = "//div//h2[contains(text(),'%s')]//following::a[contains(text(),'See More')][1]";
+    String rankedProduct_Xpath = "//span[@class='zg-bdg-text' and contains(text(),'%s')]//following::div[@class='zg-grid-general-faceout'][1]";
 
-    public void Click_SeeMore_For_BestSeller_Category(String category)
+    public void click_SeeMore_For_BestSeller_Category(String category)
     {
-        wait.withTimeout(Duration.ofSeconds(5));
-        driver.findElement(By.xpath(String.format(BestSeller_Category_Xpath,category))).click();
+        WebElement seeMoreLink = driver.findElement(By.xpath(String.format(bestSeller_Category_Xpath,category)));
+        wait.until(ExpectedConditions.elementToBeClickable(seeMoreLink));
+
+        //Scroll down to the user input Category
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",seeMoreLink);
+
+        //Wait for 2 seconds
+        try{
+            f_wait.until(driver -> false);}
+        catch (Exception e) {}
+
+        //Click on See more link
+        seeMoreLink.click();
         logger.info("Clicked See More button beside the required Best Seller Category");
     }
-    public void Click_Specific_RankedProduct(String rank)
+    public void click_Specific_RankedProduct(String rank)
     {
-        wait.withTimeout(Duration.ofSeconds(5));
-        driver.findElement(By.xpath(String.format(RankedProduct_Xpath,rank))).click();
-        logger.info("Clicked User Input Ranked Product from the choosen Best Seller Category");
+        WebElement rankedProduct = driver.findElement(By.xpath(String.format(rankedProduct_Xpath,rank)));
+        wait.until(ExpectedConditions.elementToBeClickable(rankedProduct));
+        rankedProduct.click();
+        logger.info("Clicked User Input Ranked Product from the chosen Best Seller Category");
     }
 }
