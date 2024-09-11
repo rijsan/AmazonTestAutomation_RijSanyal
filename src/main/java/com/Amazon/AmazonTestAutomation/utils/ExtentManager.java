@@ -17,9 +17,9 @@ public class ExtentManager
     public static ExtentReports createInstance(String fileName)
     {
         ExtentSparkReporter sparkReporter = new ExtentSparkReporter(fileName);
-        sparkReporter.config().setTheme(Theme.DARK);
+        sparkReporter.config().setTheme(Theme.STANDARD);
         sparkReporter.config().setDocumentTitle("Automation Report for Amazon.in");
-        sparkReporter.config().setReportName("TEST REPORT");
+        sparkReporter.config().setReportName("AMAZON TEST REPORT");
 
         extent = new ExtentReports();
         extent.attachReporter(sparkReporter);

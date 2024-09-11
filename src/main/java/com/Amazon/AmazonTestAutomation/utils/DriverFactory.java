@@ -2,8 +2,7 @@ package com.Amazon.AmazonTestAutomation.utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-
+import org.openqa.selenium.edge.EdgeDriver;
 
 public class DriverFactory
 {
@@ -16,12 +15,12 @@ public class DriverFactory
             switch(browser.toLowerCase())
             {
                 case "chrome":
-                    System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
+                    System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver");
                     driver=new ChromeDriver();
                     break;
-                case "firefox":
-                    System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/geckodriver.exe");
-                    driver=new FirefoxDriver();
+                case "edge":
+                    System.setProperty("webdriver.gecko.driver", "src/test/resources/drivers/msedgedriver");
+                    driver=new EdgeDriver();
                     break;
                 default:
                     throw new IllegalArgumentException("Browser not supported: " + browser);

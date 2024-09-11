@@ -22,6 +22,7 @@ public class TestListener implements ITestListener {
 
         // Take screenshot
         ScreenshotUtil.takeScreenshot(result.getName());
+
     }
 
     // Other methods from ITestListener can be overridden as needed
