@@ -1,0 +1,19 @@
+2024-09-11 15:31:14 INFO  LoggerUtil:12 - Clicked the Account Options Link
+2024-09-11 15:31:15 INFO  LoggerUtil:12 - Entered Email ID in Credential Text Box
+2024-09-11 15:31:19 INFO  LoggerUtil:12 - Continue Button clicked
+2024-09-11 15:31:19 INFO  LoggerUtil:12 - Entered Password in Password Text Box
+2024-09-11 15:32:04 INFO  LoggerUtil:12 - Submit button clicked
+2024-09-11 15:32:04 INFO  LoggerUtil:12 - SUCCESSFULLY LOGGED IN TO AMAZON.IN 
+2024-09-11 15:32:07 INFO  LoggerUtil:12 - Clicked the Account Options Link
+2024-09-11 15:32:09 INFO  LoggerUtil:12 - Your Addresses Option is Selected
+2024-09-11 15:32:12 INFO  LoggerUtil:12 - Add New Address Option Clicked
+2024-09-11 15:32:12 INFO  LoggerUtil:12 - Add Address Page is now displayed
+2024-09-11 15:32:14 INFO  LoggerUtil:12 - Full Name is entered
+2024-09-11 15:32:16 INFO  LoggerUtil:12 - Mobile Number is entered
+2024-09-11 15:32:18 INFO  LoggerUtil:12 - Pincode is entered
+2024-09-11 15:32:20 INFO  LoggerUtil:12 - House Details is entered
+2024-09-11 15:32:23 INFO  LoggerUtil:12 - Area Details is entered
+2024-09-11 15:32:25 INFO  LoggerUtil:12 - Landmark is entered
+2024-09-11 15:32:27 INFO  LoggerUtil:12 - Town name is entered
+2024-09-11 15:32:29 INFO  LoggerUtil:12 - State is selected from Dropdown
+2024-09-11 15:32:33 INFO  LoggerUtil:12 - Add Address Submit button selected

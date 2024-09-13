@@ -1,0 +1,16 @@
+2024-09-11 15:26:44 INFO  LoggerUtil:12 - Clicked the Account Options Link
+2024-09-11 15:26:44 INFO  LoggerUtil:12 - Entered Email ID in Credential Text Box
+2024-09-11 15:26:47 INFO  LoggerUtil:12 - Continue Button clicked
+2024-09-11 15:26:47 INFO  LoggerUtil:12 - Entered Password in Password Text Box
+2024-09-11 15:26:47 INFO  LoggerUtil:12 - Submit button clicked
+2024-09-11 15:26:47 INFO  LoggerUtil:12 - SUCCESSFULLY LOGGED IN TO AMAZON.IN 
+2024-09-11 15:27:49 INFO  LoggerUtil:12 - Navigation to the Cart screen is clicked
+2024-09-11 15:27:51 INFO  LoggerUtil:12 - All existing products in the cart is cleared
+2024-09-11 15:28:00 INFO  LoggerUtil:12 - Best Seller page is opened 
+2024-09-11 15:28:08 INFO  LoggerUtil:12 - Clicked See More button beside the required Best Seller Category
+2024-09-11 15:28:18 INFO  LoggerUtil:12 - Clicked User Input Ranked Product from the chosen Best Seller Category
+2024-09-11 15:28:27 INFO  LoggerUtil:12 - Add To Cart Button is Clicked
+2024-09-11 15:28:33 INFO  LoggerUtil:12 - Navigation to the Cart screen is clicked
+2024-09-11 15:28:33 INFO  LoggerUtil:12 - Title of Products in Cart is fetched
+2024-09-11 15:28:33 INFO  LoggerUtil:12 - Hovered over the Account Options Link
+2024-09-11 15:28:39 INFO  LoggerUtil:12 - SUCCESSFULLY LOGGED OUT FROM AMAZON.IN 

@@ -192,6 +192,7 @@ public class TestCases extends BaseTest
         excelReader.selectSheet(methodName);
         String fullName = excelReader.getData("FULL NAME", "ADDRESS");
         String mobileNo = excelReader.getData("MOBILE NO", "ADDRESS");
+        System.out.println(mobileNo);
         String pincode = excelReader.getData("PINCODE", "ADDRESS");
         String houseDetails = excelReader.getData("HOUSE DETAILS", "ADDRESS");
         String areaDetails = excelReader.getData("AREA DETAILS", "ADDRESS");

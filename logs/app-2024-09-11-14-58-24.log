@@ -1,0 +1,14 @@
+2024-09-11 14:58:48 INFO  LoggerUtil:12 - Clicked the Account Options Link
+2024-09-11 14:58:48 INFO  LoggerUtil:12 - Entered Email ID in Credential Text Box
+2024-09-11 14:58:51 INFO  LoggerUtil:12 - Continue Button clicked
+2024-09-11 14:58:52 INFO  LoggerUtil:12 - Entered Password in Password Text Box
+2024-09-11 14:59:04 INFO  LoggerUtil:12 - Submit button clicked
+2024-09-11 14:59:04 INFO  LoggerUtil:12 - SUCCESSFULLY LOGGED IN TO AMAZON.IN 
+2024-09-11 15:00:21 INFO  LoggerUtil:12 - Selected Section - Electronics
+2024-09-11 15:00:21 INFO  LoggerUtil:12 - Verifying landing on the Electronics page
+2024-09-11 15:00:42 INFO  LoggerUtil:12 - Clicked the Account Options Link
+2024-09-11 15:00:43 INFO  LoggerUtil:12 - Entered Email ID in Credential Text Box
+2024-09-11 15:00:45 INFO  LoggerUtil:12 - Continue Button clicked
+2024-09-11 15:00:45 INFO  LoggerUtil:12 - Entered Password in Password Text Box
+2024-09-11 15:00:46 INFO  LoggerUtil:12 - Submit button clicked
+2024-09-11 15:00:46 INFO  LoggerUtil:12 - SUCCESSFULLY LOGGED IN TO AMAZON.IN 

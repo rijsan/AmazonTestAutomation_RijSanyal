@@ -22,8 +22,8 @@ public class BaseTest
     ExcelReader excelReader;
 
     @BeforeMethod
-//    @Parameters("browser")
-    public void setUp() throws InterruptedException {
+    @Parameters("browser")
+    public void setUp(String browser) throws InterruptedException {
         final String propertiesFilePath = "src/main/java/com/Amazon/AmazonTestAutomation/config/config.properties";
         Properties properties = new Properties();
         String URL = null;
@@ -37,7 +37,7 @@ public class BaseTest
             e.printStackTrace();
         }
         extent = ExtentManager.getInstance();
-        driver = DriverFactory.getDriver("chrome");
+        driver = DriverFactory.getDriver(browser);
         driver.manage().window().maximize();
         driver.navigate().to(URL);
         ScreenshotUtil screenshotUtil = new ScreenshotUtil(driver,properties.getProperty("ScreenshotFolderPath"));
@@ -75,6 +75,4 @@ public class BaseTest
         DriverFactory.quitDriver();
         extent.flush();
     }
-
-
 }

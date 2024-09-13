@@ -1,0 +1,117 @@
+2024-09-12 15:22:48 INFO  LoggerUtil:12 - Clicked the Account Options Link
+2024-09-12 15:22:49 INFO  LoggerUtil:12 - Entered Email ID in Credential Text Box
+2024-09-12 15:22:51 INFO  LoggerUtil:12 - Continue Button clicked
+2024-09-12 15:22:51 INFO  LoggerUtil:12 - Entered Password in Password Text Box
+2024-09-12 15:23:00 INFO  LoggerUtil:12 - Submit button clicked
+2024-09-12 15:23:00 INFO  LoggerUtil:12 - SUCCESSFULLY LOGGED IN TO AMAZON.IN 
+2024-09-12 15:23:14 INFO  LoggerUtil:12 - Selected Section - Electronics
+2024-09-12 15:23:14 INFO  LoggerUtil:12 - Verifying landing on the Electronics page
+2024-09-12 15:23:30 INFO  LoggerUtil:12 - Clicked the Account Options Link
+2024-09-12 15:23:30 INFO  LoggerUtil:12 - Entered Email ID in Credential Text Box
+2024-09-12 15:23:32 INFO  LoggerUtil:12 - Continue Button clicked
+2024-09-12 15:23:32 INFO  LoggerUtil:12 - Entered Password in Password Text Box
+2024-09-12 15:23:49 INFO  LoggerUtil:12 - Submit button clicked
+2024-09-12 15:23:49 INFO  LoggerUtil:12 - SUCCESSFULLY LOGGED IN TO AMAZON.IN 
+2024-09-12 15:23:51 INFO  LoggerUtil:12 - Navigation to the Cart screen is clicked
+2024-09-12 15:23:51 INFO  LoggerUtil:12 - All existing products in the cart is cleared
+2024-09-12 15:23:56 INFO  LoggerUtil:12 - Searched Item Airdopes 800 from Category - Electronics
+2024-09-12 15:23:57 INFO  LoggerUtil:12 - Add to Item is clicked for Item - Airdopes 800
+2024-09-12 15:24:03 INFO  LoggerUtil:12 - Searched Item Kutchina from Category - Home & Kitchen
+2024-09-12 15:24:03 INFO  LoggerUtil:12 - Add to Item is clicked for Item - Kutchina
+2024-09-12 15:24:08 INFO  LoggerUtil:12 - Searched Item Alexa from Category - Amazon Devices
+2024-09-12 15:24:09 INFO  LoggerUtil:12 - Add to Item is clicked for Item - Alexa
+2024-09-12 15:24:15 INFO  LoggerUtil:12 - Navigation to the Cart screen is clicked
+2024-09-12 15:24:16 INFO  LoggerUtil:12 - List of Products in Cart is fetched
+2024-09-12 15:24:26 INFO  LoggerUtil:12 - Clicked the Account Options Link
+2024-09-12 15:24:26 INFO  LoggerUtil:12 - Entered Email ID in Credential Text Box
+2024-09-12 15:24:28 INFO  LoggerUtil:12 - Continue Button clicked
+2024-09-12 15:24:28 INFO  LoggerUtil:12 - Entered Password in Password Text Box
+2024-09-12 15:24:29 INFO  LoggerUtil:12 - Submit button clicked
+2024-09-12 15:24:29 INFO  LoggerUtil:12 - SUCCESSFULLY LOGGED IN TO AMAZON.IN 
+2024-09-12 15:24:39 INFO  LoggerUtil:12 - Searching Item -Samsung
+2024-09-12 15:24:47 INFO  LoggerUtil:12 - Filter is selected from the list of Filter
+2024-09-12 15:24:47 INFO  LoggerUtil:12 - Filter name is fetched
+2024-09-12 15:25:00 INFO  LoggerUtil:12 - Clicked the Account Options Link
+2024-09-12 15:25:00 INFO  LoggerUtil:12 - Entered Email ID in Credential Text Box
+2024-09-12 15:25:02 INFO  LoggerUtil:12 - Continue Button clicked
+2024-09-12 15:25:03 INFO  LoggerUtil:12 - Entered Password in Password Text Box
+2024-09-12 15:25:03 INFO  LoggerUtil:12 - Submit button clicked
+2024-09-12 15:25:03 INFO  LoggerUtil:12 - SUCCESSFULLY LOGGED IN TO AMAZON.IN 
+2024-09-12 15:25:09 INFO  LoggerUtil:12 - Clicked the Account Options Link
+2024-09-12 15:25:11 INFO  LoggerUtil:12 - Your Addresses Option is Selected
+2024-09-12 15:25:12 INFO  LoggerUtil:12 - Add New Address Option Clicked
+2024-09-12 15:25:12 INFO  LoggerUtil:12 - Add Address Page is now displayed
+2024-09-12 15:25:14 INFO  LoggerUtil:12 - Full Name is entered
+2024-09-12 15:25:16 INFO  LoggerUtil:12 - Mobile Number is entered
+2024-09-12 15:25:19 INFO  LoggerUtil:12 - Pincode is entered
+2024-09-12 15:25:21 INFO  LoggerUtil:12 - House Details is entered
+2024-09-12 15:25:23 INFO  LoggerUtil:12 - Area Details is entered
+2024-09-12 15:25:25 INFO  LoggerUtil:12 - Landmark is entered
+2024-09-12 15:25:27 INFO  LoggerUtil:12 - Town name is entered
+2024-09-12 15:25:30 INFO  LoggerUtil:12 - State is selected from Dropdown
+2024-09-12 15:25:33 INFO  LoggerUtil:12 - Add Address Submit button selected
+2024-09-12 15:25:46 INFO  LoggerUtil:12 - Clicked the Account Options Link
+2024-09-12 15:25:46 INFO  LoggerUtil:12 - Entered Email ID in Credential Text Box
+2024-09-12 15:25:48 INFO  LoggerUtil:12 - Continue Button clicked
+2024-09-12 15:25:48 INFO  LoggerUtil:12 - Entered Password in Password Text Box
+2024-09-12 15:25:48 INFO  LoggerUtil:12 - Submit button clicked
+2024-09-12 15:25:48 INFO  LoggerUtil:12 - SUCCESSFULLY LOGGED IN TO AMAZON.IN 
+2024-09-12 15:26:01 INFO  LoggerUtil:12 - Navigation to the Cart screen is clicked
+2024-09-12 15:26:02 INFO  LoggerUtil:12 - All existing products in the cart is cleared
+2024-09-12 15:26:08 INFO  LoggerUtil:12 - Best Seller page is opened 
+2024-09-12 15:26:15 INFO  LoggerUtil:12 - Clicked See More button beside the required Best Seller Category
+2024-09-12 15:26:23 INFO  LoggerUtil:12 - Clicked User Input Ranked Product from the chosen Best Seller Category
+2024-09-12 15:26:31 INFO  LoggerUtil:12 - Add To Cart Button is Clicked
+2024-09-12 15:26:33 INFO  LoggerUtil:12 - Navigation to the Cart screen is clicked
+2024-09-12 15:26:33 INFO  LoggerUtil:12 - Title of Products in Cart is fetched
+2024-09-12 15:26:34 INFO  LoggerUtil:12 - Hovered over the Account Options Link
+2024-09-12 15:26:38 INFO  LoggerUtil:12 - SUCCESSFULLY LOGGED OUT FROM AMAZON.IN 
+2024-09-12 15:26:57 INFO  LoggerUtil:12 - Clicked the Account Options Link
+2024-09-12 15:26:57 INFO  LoggerUtil:12 - Entered Email ID in Credential Text Box
+2024-09-12 15:26:59 INFO  LoggerUtil:12 - Continue Button clicked
+2024-09-12 15:27:00 INFO  LoggerUtil:12 - Entered Password in Password Text Box
+2024-09-12 15:27:00 INFO  LoggerUtil:12 - Submit button clicked
+2024-09-12 15:27:00 INFO  LoggerUtil:12 - SUCCESSFULLY LOGGED IN TO AMAZON.IN 
+2024-09-12 15:27:15 INFO  LoggerUtil:12 - Selected Section - Electronics
+2024-09-12 15:27:15 INFO  LoggerUtil:12 - Verifying landing on the Electronics page
+2024-09-12 15:27:29 INFO  LoggerUtil:12 - Clicked the Account Options Link
+2024-09-12 15:27:29 INFO  LoggerUtil:12 - Entered Email ID in Credential Text Box
+2024-09-12 15:27:32 INFO  LoggerUtil:12 - Continue Button clicked
+2024-09-12 15:27:32 INFO  LoggerUtil:12 - Entered Password in Password Text Box
+2024-09-12 15:27:32 INFO  LoggerUtil:12 - Submit button clicked
+2024-09-12 15:27:32 INFO  LoggerUtil:12 - SUCCESSFULLY LOGGED IN TO AMAZON.IN 
+2024-09-12 15:27:42 INFO  LoggerUtil:12 - Navigation to the Cart screen is clicked
+2024-09-12 15:27:42 INFO  LoggerUtil:12 - All existing products in the cart is cleared
+2024-09-12 15:27:47 INFO  LoggerUtil:12 - Searched Item Airdopes 800 from Category - Electronics
+2024-09-12 15:27:48 INFO  LoggerUtil:12 - Add to Item is clicked for Item - Airdopes 800
+2024-09-12 15:27:54 INFO  LoggerUtil:12 - Searched Item Kutchina from Category - Home & Kitchen
+2024-09-12 15:27:54 INFO  LoggerUtil:12 - Add to Item is clicked for Item - Kutchina
+2024-09-12 15:28:00 INFO  LoggerUtil:12 - Searched Item Alexa from Category - Amazon Devices
+2024-09-12 15:28:00 INFO  LoggerUtil:12 - Add to Item is clicked for Item - Alexa
+2024-09-12 15:28:06 INFO  LoggerUtil:12 - Navigation to the Cart screen is clicked
+2024-09-12 15:28:06 INFO  LoggerUtil:12 - List of Products in Cart is fetched
+2024-09-12 15:28:18 INFO  LoggerUtil:12 - Clicked the Account Options Link
+2024-09-12 15:28:19 INFO  LoggerUtil:12 - Entered Email ID in Credential Text Box
+2024-09-12 15:28:21 INFO  LoggerUtil:12 - Continue Button clicked
+2024-09-12 15:28:21 INFO  LoggerUtil:12 - Entered Password in Password Text Box
+2024-09-12 15:28:21 INFO  LoggerUtil:12 - Submit button clicked
+2024-09-12 15:28:21 INFO  LoggerUtil:12 - SUCCESSFULLY LOGGED IN TO AMAZON.IN 
+2024-09-12 15:28:31 INFO  LoggerUtil:12 - Searching Item -Samsung
+2024-09-12 15:28:56 INFO  LoggerUtil:12 - Filter is selected from the list of Filter
+2024-09-12 15:28:56 INFO  LoggerUtil:12 - Filter name is fetched
+2024-09-12 15:29:32 INFO  LoggerUtil:12 - Clicked the Account Options Link
+2024-09-12 15:29:32 INFO  LoggerUtil:12 - Entered Email ID in Credential Text Box
+2024-09-12 15:29:34 INFO  LoggerUtil:12 - Continue Button clicked
+2024-09-12 15:29:34 INFO  LoggerUtil:12 - Entered Password in Password Text Box
+2024-09-12 15:29:34 INFO  LoggerUtil:12 - Submit button clicked
+2024-09-12 15:29:34 INFO  LoggerUtil:12 - SUCCESSFULLY LOGGED IN TO AMAZON.IN 
+2024-09-12 15:29:42 INFO  LoggerUtil:12 - Navigation to the Cart screen is clicked
+2024-09-12 15:29:44 INFO  LoggerUtil:12 - All existing products in the cart is cleared
+2024-09-12 15:29:48 INFO  LoggerUtil:12 - Best Seller page is opened 
+2024-09-12 15:29:54 INFO  LoggerUtil:12 - Clicked See More button beside the required Best Seller Category
+2024-09-12 15:30:00 INFO  LoggerUtil:12 - Clicked User Input Ranked Product from the chosen Best Seller Category
+2024-09-12 15:30:03 INFO  LoggerUtil:12 - Add To Cart Button is Clicked
+2024-09-12 15:30:05 INFO  LoggerUtil:12 - Navigation to the Cart screen is clicked
+2024-09-12 15:30:05 INFO  LoggerUtil:12 - Title of Products in Cart is fetched
+2024-09-12 15:30:05 INFO  LoggerUtil:12 - Hovered over the Account Options Link
+2024-09-12 15:30:10 INFO  LoggerUtil:12 - SUCCESSFULLY LOGGED OUT FROM AMAZON.IN 

@@ -1,0 +1,16 @@
+2024-09-11 15:24:40 INFO  LoggerUtil:12 - Clicked the Account Options Link
+2024-09-11 15:24:40 INFO  LoggerUtil:12 - Entered Email ID in Credential Text Box
+2024-09-11 15:24:43 INFO  LoggerUtil:12 - Continue Button clicked
+2024-09-11 15:24:43 INFO  LoggerUtil:12 - Entered Password in Password Text Box
+2024-09-11 15:24:59 INFO  LoggerUtil:12 - Submit button clicked
+2024-09-11 15:24:59 INFO  LoggerUtil:12 - SUCCESSFULLY LOGGED IN TO AMAZON.IN 
+2024-09-11 15:25:05 INFO  LoggerUtil:12 - Navigation to the Cart screen is clicked
+2024-09-11 15:25:05 INFO  LoggerUtil:12 - All existing products in the cart is cleared
+2024-09-11 15:25:19 INFO  LoggerUtil:12 - Searched Item Airdopes 800 from Category - Electronics
+2024-09-11 15:25:19 INFO  LoggerUtil:12 - Add to Item is clicked for Item - Airdopes 800
+2024-09-11 15:25:32 INFO  LoggerUtil:12 - Searched Item Kutchina from Category - Home & Kitchen
+2024-09-11 15:25:32 INFO  LoggerUtil:12 - Add to Item is clicked for Item - Kutchina
+2024-09-11 15:25:44 INFO  LoggerUtil:12 - Searched Item Alexa from Category - Amazon Devices
+2024-09-11 15:25:44 INFO  LoggerUtil:12 - Add to Item is clicked for Item - Alexa
+2024-09-11 15:25:52 INFO  LoggerUtil:12 - Navigation to the Cart screen is clicked
+2024-09-11 15:25:53 INFO  LoggerUtil:12 - List of Products in Cart is fetched
