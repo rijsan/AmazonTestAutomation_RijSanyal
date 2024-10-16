@@ -3,6 +3,7 @@ package com.ApiTestAutomation.api;
 import com.Amazon.AmazonTestAutomation.utils.LoggerUtil;
 import com.ApiTestAutomation.utils.ApiUtils;
 import com.ApiTestAutomation.utils.ExcelReader;
+import com.aventstack.extentreports.ExtentTest;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONObject;
 
@@ -17,7 +18,7 @@ public class ApiClient {
     public ApiClient(ExcelReader excelReader) {
         this.excelReader = excelReader;
     }
-    public String createBooking() throws IOException {
+    public String createBooking(ExtentTest test) throws IOException {
         Map<String, String> data = excelReader.getData("CreateBooking");
         String url = data.get("URL");
         Map<String, Object> requestBody = new HashMap<>();
@@ -33,10 +34,10 @@ public class ApiClient {
         requestBody.put("additionalneeds", data.get("AdditionalNeeds"));
 
         String jsonBody = new ObjectMapper().writeValueAsString(requestBody);
-        return ApiUtils.postRequest(url, jsonBody);
+        return ApiUtils.postRequest(url, jsonBody, test);
     }
 
-    public String getNewBookingID() throws IOException {
+    public String getNewBookingID(ExtentTest test) throws IOException {
         Map<String, String> data = excelReader.getData("CreateBooking");
         String url = data.get("URL");
         Map<String, Object> requestBody = new HashMap<>();
@@ -51,13 +52,13 @@ public class ApiClient {
         requestBody.put("additionalneeds", data.get("AdditionalNeeds"));
 
         String jsonBody = new ObjectMapper().writeValueAsString(requestBody);
-        String responseBody = ApiUtils.postRequest(url, jsonBody);
+        String responseBody = ApiUtils.postRequest(url, jsonBody, test);
         JSONObject jsonResponse1 = new JSONObject(responseBody);
         logger.info("Booking id : " + String.valueOf(jsonResponse1.getInt("bookingid")));
         return String.valueOf(jsonResponse1.getInt("bookingid"));
     }
 
-    public String updateBooking(String token, String id) throws IOException {
+    public String updateBooking(String token, String id, ExtentTest test) throws IOException {
         Map<String, String> data = excelReader.getData("UpdateBooking");
         String url = data.get("URL") + "/" + id;
 
@@ -74,12 +75,12 @@ public class ApiClient {
         requestBody.put("additionalneeds", data.get("AdditionalNeeds"));
 
         String jsonBody = new ObjectMapper().writeValueAsString(requestBody);
-        return ApiUtils.putRequest(url, jsonBody, token);
+        return ApiUtils.putRequest(url, jsonBody, token, test);
     }
 
-    public String deleteBooking(String token, String ID) throws IOException {
+    public String deleteBooking(String token, String ID, ExtentTest test) throws IOException {
         Map<String, String> data = excelReader.getData("DeleteBooking");
         String url = data.get("URL") + "/" + ID;
-        return ApiUtils.deleteRequest(url, token);
+        return ApiUtils.deleteRequest(url, token, test);
     }
 }

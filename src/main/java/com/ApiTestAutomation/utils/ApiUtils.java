@@ -1,6 +1,8 @@
 package com.ApiTestAutomation.utils;
 
 import com.Amazon.AmazonTestAutomation.utils.LoggerUtil;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.*;
 import org.apache.http.entity.StringEntity;
@@ -12,7 +14,7 @@ import java.io.IOException;
 public class ApiUtils {
     public static LoggerUtil logger = new LoggerUtil();
 
-    public static String postRequest(String url, String jsonBody) throws IOException {
+    public static String postRequest(String url, String jsonBody, ExtentTest test) throws IOException {
         logger.info("Sending POST request to URL: " + url);
         logger.debug("Request Body: " + jsonBody);
 
@@ -25,12 +27,14 @@ public class ApiUtils {
         HttpResponse response = client.execute(post);
         String result = EntityUtils.toString(response.getEntity());
         logger.info("Response Code : " + response.getStatusLine().getStatusCode());
+        test.log(Status.INFO,"Response Code : "+response.getStatusLine().getStatusCode());
         logger.info("Response: " + result);
+        test.log(Status.INFO,"Response Body : "+result);
         client.close();
         return result;
     }
 
-    public static String putRequest(String url, String jsonBody, String token) throws IOException {
+    public static String putRequest(String url, String jsonBody, String token, ExtentTest test) throws IOException {
         logger.info("Sending PUT request to URL: " + url);
 
         logger.info(jsonBody);
@@ -44,12 +48,14 @@ public class ApiUtils {
         CloseableHttpResponse response = client.execute(put);
         String result = EntityUtils.toString(response.getEntity());
         logger.info("Response Code : " + response.getStatusLine().getStatusCode());
+        test.log(Status.INFO,"Response Code : "+response.getStatusLine().getStatusCode());
         logger.info("Response: " + result);
+        test.log(Status.INFO,"Response Body : "+result);
         client.close();
         return result;
     }
 
-    public static String deleteRequest(String url, String token) throws IOException {
+    public static String deleteRequest(String url, String token, ExtentTest test) throws IOException {
         logger.info("Sending DELETE request to URL: " + url);
 
         CloseableHttpClient client = HttpClients.createDefault();
@@ -60,7 +66,9 @@ public class ApiUtils {
         CloseableHttpResponse response = client.execute(delete);
         String result = EntityUtils.toString(response.getEntity());
         logger.info("Response Code : " + response.getStatusLine().getStatusCode());
+        test.log(Status.INFO,"Response Code : "+response.getStatusLine().getStatusCode());
         logger.info("Response: " + result);
+        test.log(Status.INFO,"Response Body : "+result);
         client.close();
         return result;
     }
