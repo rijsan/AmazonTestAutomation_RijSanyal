@@ -14,6 +14,7 @@ import java.io.IOException;
 public class ApiUtils {
     public static LoggerUtil logger = new LoggerUtil();
 
+    // Method to handle POST request
     public static String postRequest(String url, String jsonBody, ExtentTest test) throws IOException {
         logger.info("Sending POST request to URL: " + url);
         logger.debug("Request Body: " + jsonBody);
@@ -34,6 +35,7 @@ public class ApiUtils {
         return result;
     }
 
+    // Method to handle PUT request
     public static String putRequest(String url, String jsonBody, String token, ExtentTest test) throws IOException {
         logger.info("Sending PUT request to URL: " + url);
 
@@ -55,6 +57,7 @@ public class ApiUtils {
         return result;
     }
 
+    // Method to handle DELETE request
     public static String deleteRequest(String url, String token, ExtentTest test) throws IOException {
         logger.info("Sending DELETE request to URL: " + url);
 
@@ -69,6 +72,25 @@ public class ApiUtils {
         test.log(Status.INFO,"Response Code : "+response.getStatusLine().getStatusCode());
         logger.info("Response: " + result);
         test.log(Status.INFO,"Response Body : "+result);
+        client.close();
+        return result;
+    }
+
+    // Method to handle GET request
+    public static String getRequest(String url) throws IOException {
+        logger.info("Sending GET request to URL: " + url);
+
+        CloseableHttpClient client = HttpClients.createDefault();
+        HttpGet get = new HttpGet(url);
+        get.setHeader("Accept", "application/json");
+
+        CloseableHttpResponse response = client.execute(get);
+        int statusCode = response.getStatusLine().getStatusCode();
+        logger.info("Response Code: " + statusCode);  // Log response code
+
+        String result = EntityUtils.toString(response.getEntity());
+        logger.info("Response Body: " + result);  // Log response body
+
         client.close();
         return result;
     }

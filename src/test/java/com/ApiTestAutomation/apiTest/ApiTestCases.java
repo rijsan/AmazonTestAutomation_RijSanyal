@@ -85,6 +85,15 @@ public class ApiTestCases {
             test.log(Status.FAIL,"Deletion Not Successful for booking ID : "+bookingID);
         }
     }
+
+    @Test(description = "Get Booking by ID Test")
+    public void testGetBookingById() throws IOException {
+        String bookingID = apiClient.getNewBookingID(test);
+        test.log(Status.INFO,"New Booking created successfully. Booking ID : "+bookingID);
+        String response = apiClient.getBooking(1, bookingID);
+        Assert.assertTrue(response.contains("firstname"), "Response should contain 'firstname'");
+}
+
     @AfterClass
     public void tearDown()
     {

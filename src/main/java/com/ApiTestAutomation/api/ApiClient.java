@@ -83,4 +83,11 @@ public class ApiClient {
         String url = data.get("URL") + "/" + ID;
         return ApiUtils.deleteRequest(url, token, test);
     }
+
+    // New method to retrieve a booking by ID
+    public String getBooking(int bookingId, String ID) throws IOException {
+        Map<String, String> data = excelReader.getData("GetBooking");
+        String url = data.get("URL") + "/" + ID;
+        return ApiUtils.getRequest(url);
+    }
 }
