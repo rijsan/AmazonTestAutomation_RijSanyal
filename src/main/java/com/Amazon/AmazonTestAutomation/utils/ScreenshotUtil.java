@@ -18,7 +18,7 @@ public class ScreenshotUtil {
     public ScreenshotUtil(WebDriver driver, String path)
     {
         Screenshot_DIR = path;
-        this.driver = driver;
+        ScreenshotUtil.driver = driver;
     }
 
     /*
@@ -26,10 +26,11 @@ public class ScreenshotUtil {
     *
     * */
 
-    public static String takeScreenshot(String screenshotname)
+    public static String takeScreenshot()
     {
         String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String filepath = Screenshot_DIR + screenshotname + "_" + timestamp + ".png";
+        //String filepath = Screenshot_DIR + screenshotname + "_" + timestamp + ".png";
+        String filepath = Screenshot_DIR + "capture_" + timestamp + ".png";
         //Take the screenshot
         File srcFile = ((TakesScreenshot) ScreenshotUtil.driver).getScreenshotAs(OutputType.FILE);
         File destFile = new File(filepath);
@@ -44,6 +45,6 @@ public class ScreenshotUtil {
         {
             System.err.println("Failed to save screenshot: "+e.getMessage());
         }
-        return destFile.getAbsolutePath().toString();
+        return destFile.getAbsolutePath();
     }
 }

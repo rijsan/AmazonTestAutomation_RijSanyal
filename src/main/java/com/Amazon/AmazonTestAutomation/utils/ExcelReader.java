@@ -6,7 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 public class ExcelReader {
-    private Workbook workbook;
+    private final Workbook workbook;
     private Sheet sheet;
 
     public ExcelReader(String excelFilePath) throws IOException {

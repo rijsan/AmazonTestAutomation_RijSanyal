@@ -85,7 +85,6 @@ public class BasePage
     {
         for(String title : cartItemTitles)
         {
-            System.out.println(title+" : "+itemTitle);
             if(title.contains(itemTitle))
                 return true;
             else

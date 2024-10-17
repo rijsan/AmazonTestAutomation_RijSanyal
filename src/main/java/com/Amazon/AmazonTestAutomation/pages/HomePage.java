@@ -88,7 +88,6 @@ public class HomePage extends BasePage
     //Logout Method to Click Logout Link
     public void click_Logout() throws InterruptedException {
         hover_Over_AccountNav();
-
         //Wait for 2 seconds
         try{
             f_wait.until(driver -> false);}

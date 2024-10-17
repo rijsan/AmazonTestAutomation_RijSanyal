@@ -53,8 +53,6 @@ public class ItemPage extends BasePage
     }
     public void selectSection(String section)
     {
-        wait.withTimeout(Duration.ofSeconds(5));
-
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView(true);",dropdownBox);
 
@@ -91,11 +89,8 @@ public class ItemPage extends BasePage
     public String addItemToCart(String item, String category) throws InterruptedException {
         String cartButton = String.format(addToCartButtonForItem,item);
         searchItemWithCategory(item,category);
-        //Wait for 2 seconds
-        try{
-            f_wait.until(driver -> false);}
-        catch (Exception e) {}
-        //wait.until(ExpectedConditions.visibilityOf(cartButton));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(cartButton))));
         driver.findElement(By.xpath(cartButton)).click();
         logger.info("Add to Item is clicked for Item - "+item);
         String titleName = driver.findElement(By.xpath(String.format(itemTitle,item))).getText();

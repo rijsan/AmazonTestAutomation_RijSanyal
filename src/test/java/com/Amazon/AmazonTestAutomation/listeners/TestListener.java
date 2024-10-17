@@ -17,7 +17,7 @@ public class TestListener implements ITestListener {
         Object testClass = result.getInstance();
         WebDriver driver = ((BaseTest) testClass).getDriver();
         // Take screenshot
-        ScreenshotUtil.takeScreenshot(result.getName());
+        ScreenshotUtil.takeScreenshot();
     }
 
     // Other methods from ITestListener can be overridden as needed

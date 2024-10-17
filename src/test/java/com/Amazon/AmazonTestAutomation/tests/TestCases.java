@@ -25,31 +25,27 @@ public class TestCases extends BaseTest
         //Creating Extent Test
         test = extent.createTest(methodName);
 
-        //Reading User Defined Input from Excel File
-        excelReader.selectSheet(methodName);
-        String userDefined_Section = excelReader.getData("SECTION_NAME", "USERDATA");
-
         try
         {
             // Logging in to Amazon.in with Email Id and Password
             LoginToAmazon();
             test.log(Status.INFO,"Logged in to Amazon.in");
-
             //Selecting user defined section
-            itemPage.navigateTo_UserDefined_Section(userDefined_Section);
+            itemPage.navigateTo_UserDefined_Section(helper.getSectionNameFromExcel());
             test.log(Status.INFO,"Navigated to User defined section");
-            Assert.assertTrue(itemPage.verifyNavigation_To_UserDefined_Section(userDefined_Section));
+            Assert.assertTrue(itemPage.verifyNavigation_To_UserDefined_Section(helper.getSectionNameFromExcel()));
 
             //Taking Screenshot for Extent Report
-            String path = ScreenshotUtil.takeScreenshot(methodName);
-            test.log(Status.PASS,"Test Case Passed ", MediaEntityBuilder.createScreenCaptureFromPath(path).build());
+            String path = ScreenshotUtil.takeScreenshot();
+            test.log(Status.PASS,"Test Case Passed ");
+            test.addScreenCaptureFromPath(path);
         }
         catch (Exception e)
         {
             //Taking Screenshot for Failed Test Case and showing it in Extent Report
-            String path = ScreenshotUtil.takeScreenshot(methodName);
-            System.out.println(path);
-            test.log(Status.FAIL,"Test Case Failed ", MediaEntityBuilder.createScreenCaptureFromPath(path).build());
+            String path = ScreenshotUtil.takeScreenshot();
+            test.log(Status.FAIL,"Test Case Failed ");
+            test.addScreenCaptureFromPath(path);
             Assert.fail("Test Case Failed due to exception: "+e.getMessage());
         }
     }
@@ -69,66 +65,42 @@ public class TestCases extends BaseTest
 
         //Reading User Defined Input from Excel File
         List<String> listOfItems = new ArrayList<String>();
-        excelReader.selectSheet(methodName);
-        String userDefined_Section_1 = excelReader.getData("SECTION_NAME", "USERDATA1");
-        String item1 = excelReader.getData("PRODUCT_NAME", "USERDATA1");
-        String userDefined_Section_2 = excelReader.getData("SECTION_NAME", "USERDATA2");
-        String item2 = excelReader.getData("PRODUCT_NAME", "USERDATA2");
-        String userDefined_Section_3 = excelReader.getData("SECTION_NAME", "USERDATA3");
-        String item3 = excelReader.getData("PRODUCT_NAME", "USERDATA3");
 
         try {
             // Logging in to Amazon.in with Email Id and Password
             LoginToAmazon();
             test.log(Status.INFO,"Logged in with Amazon account");
 
-//            //Method to clear all existing cart items
-//            cartPage.clear_Cart();
-//            test.log(Status.INFO,"Existing items in cart is removed");
+            int count = Integer.parseInt(helper.getCountOfSearchDataFromExcel());
 
-            //Adding 1st Item to Cart
-            String itemTitle1 = itemPage.addItemToCart(item1,userDefined_Section_1).substring(0,30);
-            listOfItems.add(itemTitle1);
-            test.log(Status.INFO,"Added First Item to Cart");
-
-            //Adding 2nd Item to Cart
-            String itemTitle2 = itemPage.addItemToCart(item2,userDefined_Section_2).substring(0,30);
-            listOfItems.add(itemTitle2);
-            test.log(Status.INFO,"Added Second Item to Cart");
-
-            //Adding 3rd Item to Cart
-            String itemTitle3 = itemPage.addItemToCart(item3,userDefined_Section_3).substring(0,30);
-            listOfItems.add(itemTitle3);
-            test.log(Status.INFO,"Added Third Item to Cart");
-
+            for(int i=1;i<=count;i++)
+            {
+                String itemTitle = itemPage.addItemToCart(helper.getProductNameFromExcel(i),helper.getSectionNameFromExcel(i)).substring(0,30);
+                listOfItems.add(itemTitle);
+                test.log(Status.INFO,"Item No. " + i + " added to Cart");
+            }
             // Extracting all Cart Item Titles from Cart Page
             List<String> cartItems = cartPage.getListOfAddedItemsInCart();
 
-            //Validate First Item Title
-            Assert.assertTrue(basePage.validateItemsInCart(itemTitle1,cartItems));
-            test.log(Status.INFO,"First Item Added to cart - Verifed");
-
-            //Validate Second Item Title
-            Assert.assertTrue(basePage.validateItemsInCart(itemTitle2,cartItems));
-            test.log(Status.INFO,"Second Item Added to cart - Verifed");
-
-            //Validate Third Item Title
-            Assert.assertTrue(basePage.validateItemsInCart(itemTitle3,cartItems));
-            test.log(Status.INFO,"Third Item Added to cart - Verifed");
+            for(int i=1;i<=count;i++)
+            {
+                Assert.assertTrue(basePage.validateItemsInCart(listOfItems.get(i-1),cartItems));
+                test.log(Status.INFO,"Item No. " + i + " is displayed on the Cart Page");
+            }
 
             //Taking Screenshot for Extent Report
-            String path = ScreenshotUtil.takeScreenshot(methodName);
+            String path = ScreenshotUtil.takeScreenshot();
             test.log(Status.PASS,"Test Case Passed ", MediaEntityBuilder.createScreenCaptureFromPath(path).build());
         }
         catch (Exception e)
         {
             //Taking Screenshot for Failed Test Case and showing it in Extent Report
-            String path = ScreenshotUtil.takeScreenshot(methodName);
+            String path = ScreenshotUtil.takeScreenshot();
             test.log(Status.FAIL,"Test Case Failed ", MediaEntityBuilder.createScreenCaptureFromPath(path).build());
             Assert.fail("Test Case Failed due to exception: "+e.getMessage());
         }
     }
-    //@Test(priority = 3)
+    @Test(priority = 3)
     public void Validate_SearchAndFilter() throws InterruptedException
     {
         //Storing method name
@@ -136,10 +108,6 @@ public class TestCases extends BaseTest
 
         //Initialising objects for different pages
         ItemPage itemPage = new ItemPage(driver);
-
-        //Reading User Defined Input from Excel File
-        excelReader.selectSheet(methodName);
-        String searchData = excelReader.getData("SEARCH", "USERDATA");
 
         //creating Extent Test for the test
         test = extent.createTest(methodName);
@@ -150,9 +118,9 @@ public class TestCases extends BaseTest
             test.log(Status.INFO,"Logged in with Amazon account");
 
             //Searching with User Given data and checking if results are matching with it
-            itemPage.searchItem(searchData);
+            itemPage.searchItem(helper.getSearchDataFromExcel());
             test.log(Status.INFO,"Item is searched with user input data");
-            boolean checkSearch = itemPage.validateProductsDisplayed(searchData);
+            boolean checkSearch = itemPage.validateProductsDisplayed(helper.getSearchDataFromExcel());
             Assert.assertTrue(checkSearch);
             test.log(Status.INFO,"Search result is correct");
 
@@ -164,18 +132,18 @@ public class TestCases extends BaseTest
             test.log(Status.INFO,"Filter result is correct");
 
             //Taking Screenshot for Extent Report
-            String path = ScreenshotUtil.takeScreenshot(methodName);
+            String path = ScreenshotUtil.takeScreenshot();
             test.log(Status.PASS,"Test Case Passed ", MediaEntityBuilder.createScreenCaptureFromPath(path).build());
         }
         catch (Exception e)
         {
             //Taking Screenshot for Failed Test Case and showing it in Extent Report
-            String path = ScreenshotUtil.takeScreenshot(methodName);
+            String path = ScreenshotUtil.takeScreenshot();
             test.log(Status.FAIL,"Test Case Failed ", MediaEntityBuilder.createScreenCaptureFromPath(path).build());
             Assert.fail("Test Case Failed due to exception: "+e.getMessage());
         }
     }
-    //@Test(priority = 4)
+    @Test(priority = 4)
     public void Validate_Amazon_AddAddress() throws InterruptedException
     {
         String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
@@ -186,22 +154,6 @@ public class TestCases extends BaseTest
         //Creating Extent Test
         test = extent.createTest(methodName);
 
-        /*
-        Reading Credentials from Excel File
-        All Address Details is saved in excel
-        */
-        excelReader.selectSheet(methodName);
-        String fullName = excelReader.getData("FULL NAME", "ADDRESS");
-        String mobileNo = excelReader.getData("MOBILE NO", "ADDRESS");
-        System.out.println(mobileNo);
-        String pincode = excelReader.getData("PINCODE", "ADDRESS");
-        String houseDetails = excelReader.getData("HOUSE DETAILS", "ADDRESS");
-        String areaDetails = excelReader.getData("AREA DETAILS", "ADDRESS");
-        String landmark = excelReader.getData("LANDMARK", "ADDRESS");
-        String town = excelReader.getData("TOWN", "ADDRESS");
-        String state = excelReader.getData("STATE", "ADDRESS");
-
-        //Try block to handle exceptions
         try
         {
             // Logging in to Amazon.in with Email Id and Password
@@ -214,25 +166,25 @@ public class TestCases extends BaseTest
             //Entering User Input Data from Excel to all the fields of Add Address Page
             addressPage.click_AddNewAddressButton();
             addressPage.validate_AddAddressPage_Displayed();
-            addressPage.enter_FullName(fullName);
-            addressPage.enter_MobileNo(mobileNo);
-            addressPage.enter_Pincode(pincode);
-            addressPage.enter_HouseDetails(houseDetails);
-            addressPage.enter_AreaDetails(areaDetails);
-            addressPage.enter_Landmark(landmark);
-            addressPage.enter_Town(town);
-            addressPage.enter_State(state);
+            addressPage.enter_FullName(helper.getFullNameFromExcel());
+            addressPage.enter_MobileNo(helper.getMobileNoFromExcel());
+            addressPage.enter_Pincode(helper.getPincodeFromExcel());
+            addressPage.enter_HouseDetails(helper.getHouseDetailsFromExcel());
+            addressPage.enter_AreaDetails(helper.getAreaDetailsFromExcel());
+            addressPage.enter_Landmark(helper.getLandmarkDetailsFromExcel());
+            addressPage.enter_Town(helper.getTownNameFromExcel());
+            addressPage.enter_State(helper.getStateNameFromExcel());
             test.log(Status.INFO,"All Details Entered for adding new address");
 
             addressPage.clickSubmit_AddAddressButton();
-            String path = ScreenshotUtil.takeScreenshot(methodName);
+            String path = ScreenshotUtil.takeScreenshot();
             test.log(Status.PASS,"Test Case Passed ", MediaEntityBuilder.createScreenCaptureFromPath(path).build());
-            Assert.assertTrue(addressPage.validate_AddedAddress(fullName));
+            Assert.assertTrue(addressPage.validate_AddedAddress(helper.getFullNameFromExcel()));
         }
         catch (Exception e)
         {
             //Taking Screenshot for Failed Test Case and showing it in Extent Report
-            String path = ScreenshotUtil.takeScreenshot(methodName);
+            String path = ScreenshotUtil.takeScreenshot();
             test.log(Status.FAIL,"Test Case Failed ", MediaEntityBuilder.createScreenCaptureFromPath(path).build());
             Assert.fail("Test Case Failed due to exception: "+e.getMessage());
         }
@@ -248,7 +200,7 @@ public class TestCases extends BaseTest
         in cart is the right one selected from selection page
         All the inputs are User Defined in the Test
     */
-    //@Test(priority = 5)
+    @Test(priority = 5)
     public void Validate_BestSellerPage() throws InterruptedException
     {
         String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
@@ -261,11 +213,6 @@ public class TestCases extends BaseTest
         //Creating Extent Test
         test = extent.createTest(methodName);
 
-        //Reading User Defined Input from Excel File
-        excelReader.selectSheet(methodName);
-        String userDefined_Category = excelReader.getData("BEST SELLER CATEGORY", "SAMPLE DATA 1");
-        String userDefined_Rank = excelReader.getData("RANK", "SAMPLE DATA 1");
-
         //Try block to handle exceptions
         try
         {
@@ -273,24 +220,21 @@ public class TestCases extends BaseTest
             LoginToAmazon();
             test.log(Status.INFO,"Logged in to Amazon.in");
 
-//            //Clearing all existing Cart Items
-//            cartPage.clear_Cart();
-//            test.log(Status.INFO,"Removing all Products from Cart");
-
             //Click Best Sellers link on HomePage
             homePage.clickBestSellers();
             test.log(Status.INFO,"Landed on Best Seller page");
 
             //Click BestSeller Category whereas category is taken from user
-            bestSeller.click_BestSeller_Category(userDefined_Category);
-            test.log(Status.INFO,"Clicked "+userDefined_Category+" on Best Seller Page");
+            bestSeller.click_BestSeller_Category(helper.getBestSellerCategoryFromExcel());
+            test.log(Status.INFO,"Clicked "+ helper.getBestSellerCategoryFromExcel() +" on Best Seller Page");
 
             //Click Ranked Product whereas rank is taken from user
-            bestSeller.click_Specific_RankedProduct(userDefined_Rank);
-            test.log(Status.INFO,"Clicked Rank No."+userDefined_Rank+" Product on "+userDefined_Category+" page");
+            bestSeller.click_Specific_RankedProduct(helper.getRankFromExcel());
+            test.log(Status.INFO,"Clicked Rank No." + helper.getRankFromExcel() + " Product on "
+                    + helper.getBestSellerCategoryFromExcel() +" page");
 
             //Storing product Title for the selected product
-            String productTitle = bestSeller.getProductTitleText().substring(0,50);
+            String productTitle = bestSeller.getProductTitleText().substring(0,30);
 
             //Click Add to Cart Button on the selected product page
             bestSeller.click_AddToCartButton();
@@ -303,11 +247,11 @@ public class TestCases extends BaseTest
             // Extracting all Cart Item Titles from Cart Page
             List<String> cartItems = cartPage.getListOfAddedItemsInCart();
 
-            //Validate First Item Title
+            //Validate Item Title
             Assert.assertTrue(basePage.validateItemsInCart(productTitle,cartItems));
 
             //Taking Screenshot for Extent Report
-            String path = ScreenshotUtil.takeScreenshot(methodName);
+            String path = ScreenshotUtil.takeScreenshot();
             test.log(Status.PASS,"Test Case Passed ", MediaEntityBuilder.createScreenCaptureFromPath(path).build());
 
             //Logout from Amazon account
@@ -317,7 +261,7 @@ public class TestCases extends BaseTest
         catch (Exception e)
         {
             //Taking Screenshot for Failed Test Case and showing it in Extent Report
-            String path = ScreenshotUtil.takeScreenshot(methodName);
+            String path = ScreenshotUtil.takeScreenshot();
             test.log(Status.FAIL,"Test Case Failed ", MediaEntityBuilder.createScreenCaptureFromPath(path).build());
             Assert.fail("Test Case Failed due to exception: "+e.getMessage());
         }
