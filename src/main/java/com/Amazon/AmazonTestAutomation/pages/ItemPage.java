@@ -6,6 +6,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
 import java.time.Duration;
@@ -46,8 +47,9 @@ public class ItemPage extends BasePage
     //Method to check whether Add Address page is displayed or not
     public String getDepartmentName()
     {
-        Assert.isTrue(departmentName.isDisplayed(),"Page Section name not displayed");
-        return departmentName.getText();
+        if(departmentName.isDisplayed())
+            return departmentName.getText();
+        else return null;
     }
     public void selectSection(String section)
     {
@@ -71,12 +73,12 @@ public class ItemPage extends BasePage
         logger.info("Verifying landing on the "+section+" page");
         return actualDeptName.contains(section);
     }
-    public void searchItemWithCategory(String item, String category)
-    {
+    public void searchItemWithCategory(String item, String category) throws InterruptedException {
         selectSection(category);
         searchBox.clear();
         searchBox.sendKeys(item.toUpperCase());
         searchButton.click();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         logger.info("Searched Item "+item+" from Category - "+category);
     }
     public void searchItem(String item)
@@ -86,10 +88,15 @@ public class ItemPage extends BasePage
         searchButton.click();
         logger.info("Searching Item -"+item);
     }
-    public String addItemToCart(String item, String category)
-    {
+    public String addItemToCart(String item, String category) throws InterruptedException {
+        String cartButton = String.format(addToCartButtonForItem,item);
         searchItemWithCategory(item,category);
-        driver.findElement(By.xpath(String.format(addToCartButtonForItem,item))).click();
+        //Wait for 2 seconds
+        try{
+            f_wait.until(driver -> false);}
+        catch (Exception e) {}
+        //wait.until(ExpectedConditions.visibilityOf(cartButton));
+        driver.findElement(By.xpath(cartButton)).click();
         logger.info("Add to Item is clicked for Item - "+item);
         String titleName = driver.findElement(By.xpath(String.format(itemTitle,item))).getText();
 

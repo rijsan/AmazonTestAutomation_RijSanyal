@@ -24,12 +24,12 @@ public class BasePage
     {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        this.f_wait = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(2));
+        this.f_wait = new FluentWait<>(driver).withTimeout(Duration.ofSeconds(4));
         PageFactory.initElements(driver,this);
         logger = new LoggerUtil();
     }
 
-    @FindBy(xpath = "//input[@id='add-to-cart-button']")
+    @FindBy(id = "add-to-cart-button")
     private WebElement addToCartButton;
 
     @FindBy(xpath = "//a[@id='nav-cart']")
@@ -38,14 +38,27 @@ public class BasePage
     @FindBy(xpath = "//span[@id='productTitle']")
     private WebElement productTitle;
 
+    @FindBy(xpath = "//button[contains(text(),'Add to Cart')]")
+    private WebElement LightningDealAddToCartButton;
+
     //Method to Click Add to Cart button
     public void click_AddToCartButton() {
-        addToCartButton.click();
+        try {
+            addToCartButton.click();
+        }
+        catch (Exception e)
+        {
+            LightningDealAddToCartButton.click();
+        }
         logger.info("Add To Cart Button is Clicked");
     }
 
     //Method to Click Cart button
     public void openCartLink() {
+        //Wait for 2 seconds
+        try{
+            f_wait.until(driver -> false);}
+        catch (Exception e) {}
         navigationToCart.click();
         logger.info("Navigation to the Cart screen is clicked");
     }
@@ -72,6 +85,7 @@ public class BasePage
     {
         for(String title : cartItemTitles)
         {
+            System.out.println(title+" : "+itemTitle);
             if(title.contains(itemTitle))
                 return true;
             else

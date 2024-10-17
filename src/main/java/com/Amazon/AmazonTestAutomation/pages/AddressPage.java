@@ -13,28 +13,28 @@ public class AddressPage extends BasePage
 
         super(driver);
     }
-    @FindBy(xpath = "//div[@id='ya-myab-plus-address-icon']")
+    @FindBy(id = "ya-myab-plus-address-icon")
     private WebElement addNewAddress;
     @FindBy(xpath = "//h2[contains(text(),'Add a new address')]")
     private WebElement addNewAddressPageHeading;
-    @FindBy(xpath = "//input[@id='address-ui-widgets-enterAddressFullName']")
+    @FindBy(id = "address-ui-widgets-enterAddressFullName")
     private WebElement fullNameInput;
-    @FindBy(xpath = "//input[@id='address-ui-widgets-enterAddressPhoneNumber']")
+    @FindBy(id = "address-ui-widgets-enterAddressPhoneNumber")
     private WebElement mobileNumberInput;
-    @FindBy(xpath = "//input[@id='address-ui-widgets-enterAddressPostalCode']")
+    @FindBy(id = "address-ui-widgets-enterAddressPostalCode")
     private WebElement pincodeInput;
-    @FindBy(xpath = "//input[@id='address-ui-widgets-enterAddressLine1']")
+    @FindBy(id = "address-ui-widgets-enterAddressLine1")
     private WebElement houseDetailsInput;
-    @FindBy(xpath = "//input[@id='address-ui-widgets-enterAddressLine2']")
+    @FindBy(id = "address-ui-widgets-enterAddressLine2")
     private WebElement areaDetailsInput;
-    @FindBy(xpath = "//input[@id='address-ui-widgets-landmark']")
+    @FindBy(id = "address-ui-widgets-landmark")
     private WebElement landmarkDetailsInput;
-    @FindBy(xpath = "//input[@id='address-ui-widgets-enterAddressCity']")
+    @FindBy(id = "address-ui-widgets-enterAddressCity")
     private WebElement townInput;
-    @FindBy(xpath = "//span[@id='address-ui-widgets-enterAddressStateOrRegion']")
+    @FindBy(id = "address-ui-widgets-enterAddressStateOrRegion")
     private WebElement stateDropdown;
     String state_xpath = "//a[contains(text(),'%s')]";
-    String checkAddressName = "(//span[@id='address-ui-widgets-FullName' and contains(text(),'%s')])[1]";
+    String checkAddressName = "(//h5[contains(@id,'address') and contains(text(),'%s')])[1]";
 
     @FindBy(xpath = "//span[contains(text(),'Add address')]//preceding::input[1]")
     private WebElement addAddressButton;

@@ -7,22 +7,17 @@ import org.testng.ITestResult;
 import org.openqa.selenium.WebDriver;
 import org.testng.Reporter;
 
-
 public class TestListener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
         // Log the failure
         Reporter.log("Test Failed: " + result.getName());
-
         // Get the driver from the test class
         Object testClass = result.getInstance();
         WebDriver driver = ((BaseTest) testClass).getDriver();
-        System.out.println(driver.toString());
-
         // Take screenshot
         ScreenshotUtil.takeScreenshot(result.getName());
-
     }
 
     // Other methods from ITestListener can be overridden as needed

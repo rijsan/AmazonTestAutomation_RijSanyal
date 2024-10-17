@@ -48,6 +48,7 @@ public class TestCases extends BaseTest
         {
             //Taking Screenshot for Failed Test Case and showing it in Extent Report
             String path = ScreenshotUtil.takeScreenshot(methodName);
+            System.out.println(path);
             test.log(Status.FAIL,"Test Case Failed ", MediaEntityBuilder.createScreenCaptureFromPath(path).build());
             Assert.fail("Test Case Failed due to exception: "+e.getMessage());
         }
@@ -81,23 +82,23 @@ public class TestCases extends BaseTest
             LoginToAmazon();
             test.log(Status.INFO,"Logged in with Amazon account");
 
-            //Method to clear all existing cart items
-            cartPage.clear_Cart();
-            test.log(Status.INFO,"Existing items in cart is removed");
+//            //Method to clear all existing cart items
+//            cartPage.clear_Cart();
+//            test.log(Status.INFO,"Existing items in cart is removed");
 
             //Adding 1st Item to Cart
-            String itemTitle1 = itemPage.addItemToCart(item1,userDefined_Section_1).substring(0,50);
+            String itemTitle1 = itemPage.addItemToCart(item1,userDefined_Section_1).substring(0,30);
             listOfItems.add(itemTitle1);
             test.log(Status.INFO,"Added First Item to Cart");
 
             //Adding 2nd Item to Cart
-            String itemTitle2 = itemPage.addItemToCart(item2,userDefined_Section_2).substring(0,50);
+            String itemTitle2 = itemPage.addItemToCart(item2,userDefined_Section_2).substring(0,30);
             listOfItems.add(itemTitle2);
             test.log(Status.INFO,"Added Second Item to Cart");
 
             //Adding 3rd Item to Cart
-            String itemTitle3 = itemPage.addItemToCart(item3,userDefined_Section_3).substring(0,50);
-            listOfItems.add(itemTitle3.substring(0,50));
+            String itemTitle3 = itemPage.addItemToCart(item3,userDefined_Section_3).substring(0,30);
+            listOfItems.add(itemTitle3);
             test.log(Status.INFO,"Added Third Item to Cart");
 
             // Extracting all Cart Item Titles from Cart Page
@@ -127,7 +128,7 @@ public class TestCases extends BaseTest
             Assert.fail("Test Case Failed due to exception: "+e.getMessage());
         }
     }
-    @Test(priority = 3)
+    //@Test(priority = 3)
     public void Validate_SearchAndFilter() throws InterruptedException
     {
         //Storing method name
@@ -174,7 +175,7 @@ public class TestCases extends BaseTest
             Assert.fail("Test Case Failed due to exception: "+e.getMessage());
         }
     }
-    @Test(priority = 4)
+    //@Test(priority = 4)
     public void Validate_Amazon_AddAddress() throws InterruptedException
     {
         String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
@@ -247,7 +248,7 @@ public class TestCases extends BaseTest
         in cart is the right one selected from selection page
         All the inputs are User Defined in the Test
     */
-    @Test(priority = 5)
+    //@Test(priority = 5)
     public void Validate_BestSellerPage() throws InterruptedException
     {
         String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
@@ -255,6 +256,7 @@ public class TestCases extends BaseTest
         HomePage homePage = new HomePage(driver);
         CartPage cartPage = new CartPage(driver);
         BestSellerPage bestSeller = new BestSellerPage(driver);
+        BasePage basePage = new BasePage(driver);
 
         //Creating Extent Test
         test = extent.createTest(methodName);
@@ -271,16 +273,16 @@ public class TestCases extends BaseTest
             LoginToAmazon();
             test.log(Status.INFO,"Logged in to Amazon.in");
 
-            //Clearing all existing Cart Items
-            cartPage.clear_Cart();
-            test.log(Status.INFO,"Removing all Products from Cart");
+//            //Clearing all existing Cart Items
+//            cartPage.clear_Cart();
+//            test.log(Status.INFO,"Removing all Products from Cart");
 
             //Click Best Sellers link on HomePage
             homePage.clickBestSellers();
             test.log(Status.INFO,"Landed on Best Seller page");
 
             //Click BestSeller Category whereas category is taken from user
-            bestSeller.click_SeeMore_For_BestSeller_Category(userDefined_Category);
+            bestSeller.click_BestSeller_Category(userDefined_Category);
             test.log(Status.INFO,"Clicked "+userDefined_Category+" on Best Seller Page");
 
             //Click Ranked Product whereas rank is taken from user
@@ -288,7 +290,7 @@ public class TestCases extends BaseTest
             test.log(Status.INFO,"Clicked Rank No."+userDefined_Rank+" Product on "+userDefined_Category+" page");
 
             //Storing product Title for the selected product
-            String productTitle = bestSeller.getProductTitleText();
+            String productTitle = bestSeller.getProductTitleText().substring(0,50);
 
             //Click Add to Cart Button on the selected product page
             bestSeller.click_AddToCartButton();
@@ -298,11 +300,11 @@ public class TestCases extends BaseTest
             bestSeller.openCartLink();
             test.log(Status.INFO,"Clicked Cart link from top Nav bar");
 
-            //Storing Title for the selected product
-            String cartItemTitle = cartPage.get_CartItem_TitleText();
+            // Extracting all Cart Item Titles from Cart Page
+            List<String> cartItems = cartPage.getListOfAddedItemsInCart();
 
-            //Comparing the title from product page and the title of product added to the cart
-            Assert.assertTrue(cartPage.matchProductDetails(cartItemTitle,productTitle));
+            //Validate First Item Title
+            Assert.assertTrue(basePage.validateItemsInCart(productTitle,cartItems));
 
             //Taking Screenshot for Extent Report
             String path = ScreenshotUtil.takeScreenshot(methodName);

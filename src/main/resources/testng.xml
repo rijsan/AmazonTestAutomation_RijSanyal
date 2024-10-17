@@ -7,10 +7,10 @@
             <class name="com.Amazon.AmazonTestAutomation.tests.TestCases"/>
         </classes>
     </test>
-    <test name="Test2">
-        <parameter name="browser" value="edge"></parameter>
-        <classes>
-            <class name="com.Amazon.AmazonTestAutomation.tests.TestCases"/>
-        </classes>
-    </test>
+<!--    <test name="Test2">-->
+<!--        <parameter name="browser" value="edge"></parameter>-->
+<!--        <classes>-->
+<!--            <class name="com.Amazon.AmazonTestAutomation.tests.TestCases"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>

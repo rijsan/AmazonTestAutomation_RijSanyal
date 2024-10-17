@@ -22,8 +22,9 @@ public class BaseTest
     ExcelReader excelReader;
 
     @BeforeMethod
-    @Parameters("browser")
-    public void setUp(String browser) throws InterruptedException {
+//    @Parameters("browser")
+    public void setUp() throws InterruptedException {
+        String browser="chrome";
         final String propertiesFilePath = "src/main/java/com/Amazon/AmazonTestAutomation/config/config.properties";
         Properties properties = new Properties();
         String URL = null;
