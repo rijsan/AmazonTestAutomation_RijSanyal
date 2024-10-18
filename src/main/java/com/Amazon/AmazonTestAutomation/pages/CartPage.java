@@ -11,6 +11,7 @@ import java.util.List;
 
 public class CartPage extends BasePage
 {
+    //Locators on Cart Page
     public CartPage(WebDriver driver) {
         super(driver);
     }

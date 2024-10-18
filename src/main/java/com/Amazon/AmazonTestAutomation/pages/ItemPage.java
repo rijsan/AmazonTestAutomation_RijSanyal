@@ -1,6 +1,5 @@
 package com.Amazon.AmazonTestAutomation.pages;
 
-import dev.failsafe.internal.util.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -20,13 +19,14 @@ public class ItemPage extends BasePage
         super(driver);
     }
 
-    @FindBy(xpath = "//span[@id='nav-search-label-id']")
+    //Locators on Item Page
+    @FindBy(id = "nav-search-label-id")
     private WebElement departmentName;
-    @FindBy(xpath = "//input[@id='nav-search-submit-button']")
+    @FindBy(id = "nav-search-submit-button")
     private WebElement searchButton;
-    @FindBy(xpath = "//input[@id='twotabsearchtextbox']")
+    @FindBy(id = "twotabsearchtextbox")
     private WebElement searchBox;
-    @FindBy(xpath = "//select[@id='searchDropdownBox']")
+    @FindBy(id = "searchDropdownBox")
     private WebElement dropdownBox;
     @FindBy(xpath = "//div[@class='aok-relative']//following::h2")
     private List<WebElement> listOfProduct;
@@ -39,10 +39,7 @@ public class ItemPage extends BasePage
 
     String sectionDropdown = "//select//option[contains(text(),'%s')]";
     String itemTitle ="(//span[contains(text(),'%s')])[1]";
-    String addToCartButtonForItem = "(//span[contains(text(),'%s')])[1]//following::button[contains(text(),'Add to cart')][1]";
-
-
-
+    String addToCartButtonForItem = "(//span[contains(text(),'%s')])[1]//following::button[contains(@id,'a-autoid')][1]";
 
     //Method to check whether Add Address page is displayed or not
     public String getDepartmentName()
@@ -89,12 +86,10 @@ public class ItemPage extends BasePage
     public String addItemToCart(String item, String category) throws InterruptedException {
         String cartButton = String.format(addToCartButtonForItem,item);
         searchItemWithCategory(item,category);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(cartButton))));
         driver.findElement(By.xpath(cartButton)).click();
         logger.info("Add to Item is clicked for Item - "+item);
         String titleName = driver.findElement(By.xpath(String.format(itemTitle,item))).getText();
-
         //Wait for 2 seconds
         try{
             f_wait.until(driver -> false);}

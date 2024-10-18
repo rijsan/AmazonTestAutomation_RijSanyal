@@ -9,10 +9,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class AddressPage extends BasePage
 {
     //constructor for Address page
-    public AddressPage(WebDriver driver) {
+    public AddressPage(WebDriver driver) {super(driver);}
 
-        super(driver);
-    }
+    //Locators on Address Page
     @FindBy(id = "ya-myab-plus-address-icon")
     private WebElement addNewAddress;
     @FindBy(xpath = "//h2[contains(text(),'Add a new address')]")

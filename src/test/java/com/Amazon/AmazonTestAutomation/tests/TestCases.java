@@ -1,5 +1,6 @@
 package com.Amazon.AmazonTestAutomation.tests;
 
+import com.Amazon.AmazonTestAutomation.config.Config;
 import com.Amazon.AmazonTestAutomation.listeners.TestListener;
 import com.Amazon.AmazonTestAutomation.pages.*;
 import com.Amazon.AmazonTestAutomation.utils.ScreenshotUtil;
@@ -14,17 +15,15 @@ import java.util.List;
 @Listeners(TestListener.class)
 public class TestCases extends BaseTest
 {
-    @Test(priority = 1)
+    @Test(priority = 5)
     public void Validate_OpenCategory() throws InterruptedException
     {
-        String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+        Config.Tests method = Config.Tests.SEARCH_CATEGORY_TEST;
 
         //Initialising objects for different pages
         ItemPage itemPage = new ItemPage(driver);
-
         //Creating Extent Test
-        test = extent.createTest(methodName);
-
+        test = extent.createTest(method.getTestName());
         try
         {
             // Logging in to Amazon.in with Email Id and Password
@@ -49,11 +48,10 @@ public class TestCases extends BaseTest
             Assert.fail("Test Case Failed due to exception: "+e.getMessage());
         }
     }
-    @Test(priority = 2)
+    @Test(priority = 3)
     public void Validate_AddToCartFeature() throws InterruptedException
     {
-        //Storing method name
-        String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+        Config.Tests method = Config.Tests.ADD_TO_CART_TEST;
 
         //Initialising objects for different pages
         BasePage basePage = new BasePage(driver);
@@ -61,7 +59,7 @@ public class TestCases extends BaseTest
         CartPage cartPage = new CartPage(driver);
 
         //Creating Extent Test
-        test = extent.createTest(methodName);
+        test = extent.createTest(method.getTestName());
 
         //Reading User Defined Input from Excel File
         List<String> listOfItems = new ArrayList<String>();
@@ -100,17 +98,15 @@ public class TestCases extends BaseTest
             Assert.fail("Test Case Failed due to exception: "+e.getMessage());
         }
     }
-    @Test(priority = 3)
+    @Test(priority = 4)
     public void Validate_SearchAndFilter() throws InterruptedException
     {
-        //Storing method name
-        String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
-
+        Config.Tests method = Config.Tests.SEARCH_FILTER_TEST;
         //Initialising objects for different pages
         ItemPage itemPage = new ItemPage(driver);
 
         //creating Extent Test for the test
-        test = extent.createTest(methodName);
+        test = extent.createTest(method.getTestName());
 
         try {
             // Logging in to Amazon.in with Email Id and Password
@@ -143,16 +139,17 @@ public class TestCases extends BaseTest
             Assert.fail("Test Case Failed due to exception: "+e.getMessage());
         }
     }
-    @Test(priority = 4)
+    @Test(priority = 2)
     public void Validate_Amazon_AddAddress() throws InterruptedException
     {
-        String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+        Config.Tests method = Config.Tests.ADDRESS_PAGE_TEST;
+
         //Initialising objects for different pages
         HomePage homePage = new HomePage(driver);
         AddressPage addressPage = new AddressPage(driver);
 
         //Creating Extent Test
-        test = extent.createTest(methodName);
+        test = extent.createTest(method.getTestName());
 
         try
         {
@@ -200,10 +197,10 @@ public class TestCases extends BaseTest
         in cart is the right one selected from selection page
         All the inputs are User Defined in the Test
     */
-    @Test(priority = 5)
+    @Test(priority = 1)
     public void Validate_BestSellerPage() throws InterruptedException
     {
-        String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+        Config.Tests method = Config.Tests.BESTSELLER_PAGE_TEST;
         //Initialising objects for different pages
         HomePage homePage = new HomePage(driver);
         CartPage cartPage = new CartPage(driver);
@@ -211,7 +208,7 @@ public class TestCases extends BaseTest
         BasePage basePage = new BasePage(driver);
 
         //Creating Extent Test
-        test = extent.createTest(methodName);
+        test = extent.createTest(method.getTestName());
 
         //Try block to handle exceptions
         try

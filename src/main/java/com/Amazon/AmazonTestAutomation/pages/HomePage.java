@@ -15,19 +15,21 @@ public class HomePage extends BasePage
     {
         super(driver);
     }
-    @FindBy(xpath="//a[@id='nav-link-accountList']")
+
+    //Locators on Home Page
+    @FindBy(id="nav-link-accountList")
     private WebElement accountNav;
 
-    @FindBy(xpath="//input[@id='ap_email']")
+    @FindBy(id="ap_email")
     private WebElement credentialTextBox;
 
-    @FindBy(xpath="//input[@id='continue']")
+    @FindBy(id="continue")
     private WebElement continueButton;
 
-    @FindBy(xpath="//input[@id='ap_password']")
+    @FindBy(id="ap_password")
     private WebElement passwordField;
 
-    @FindBy(xpath="//input[@id='signInSubmit']")
+    @FindBy(id="signInSubmit")
     private WebElement submitButton;
     @FindBy(xpath="//a[@id='nav-item-signout']")
     private WebElement logout;

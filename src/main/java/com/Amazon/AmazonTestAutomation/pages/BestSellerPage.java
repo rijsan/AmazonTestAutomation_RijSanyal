@@ -12,6 +12,7 @@ public class BestSellerPage extends BasePage
         super(driver);
     }
 
+    //Locators on BestSeller Page
     String bestSeller_Category_Xpath = "//div//h2[contains(text(),'%s')]//following::a[contains(text(),'See More')][1]";
     String bestSeller_Category_AlternateXpath = "//a[contains(text(),'%s')]";
     String rankedProduct_Xpath = "//span[@class='zg-bdg-text' and contains(text(),'%s')]//following::div[@class='zg-grid-general-faceout'][1]";

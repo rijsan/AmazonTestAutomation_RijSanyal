@@ -85,7 +85,8 @@ public class BasePage
     {
         for(String title : cartItemTitles)
         {
-            if(title.contains(itemTitle))
+            int length = itemTitle.length();
+            if(title.substring(0,length).equalsIgnoreCase(itemTitle))
                 return true;
             else
                 continue;
